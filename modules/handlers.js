@@ -9,7 +9,6 @@ exports.upload = function(request, response) {
     if (err) { console.error(err); }
 
     var name = (fields.title || 'test') + '.png';
-    fs.writeFile('./imageData.txt', name);
     fs.renameSync(files.upload.path, name);
     response.writeHead(200, {"Content-Type": "text/html"});
     fs.readFile('templates/upload.html', function(err, html) {
@@ -26,9 +25,8 @@ exports.upload = function(request, response) {
 };
 
 exports.uploadCSS = function(request, response) {
-  fs.readFile('css/upload.css', function(err, css) {
+  fs.readFile('css/style.css', function(err, css) {
     if (err) { console.error(err); }
-
     response.writeHead(200, {"Content-Type": "text/css"});
     response.write(css);
     response.end();
@@ -39,7 +37,6 @@ exports.welcome = function(request, response) {
   console.log("Rozpoczynam obsługę żądania welcome");
   fs.readFile('templates/start.html', function(err, html) {
     if (err) { console.error(err); }
-
     response.writeHead(200, {"Content-Type": "text/html; charset=utf-8"});
     response.write(html);
     response.end();
@@ -52,7 +49,6 @@ exports.show = function(request, response) {
 
     fs.readFile(file, 'binary', function(err, data) {
       if (err) { console.error(err); }
-
       response.writeHead(200, {"Content-Type": "image/png"});
       response.write(data, 'binary');
       response.end();
