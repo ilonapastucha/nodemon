@@ -25,7 +25,7 @@ exports.upload = function(request, response) {
 };
 
 exports.uploadCSS = function(request, response) {
-  fs.readFile('css/style.css', function(err, css) {
+  fs.readFile('/style.css', function(err, css) {
     if (err) { console.error(err); }
     response.writeHead(200, {"Content-Type": "text/css"});
     response.write(css);
@@ -44,7 +44,7 @@ exports.welcome = function(request, response) {
 };
 
 exports.show = function(request, response) {
-  fs.readFile('imageData.txt', 'binary', function(err, file) {
+  fs.readFile('test.png', 'binary', function(err, file) {
     if (err) { console.error(err); }
 
     fs.readFile(file, 'binary', function(err, data) {
